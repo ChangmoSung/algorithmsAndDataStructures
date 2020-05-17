@@ -16,7 +16,7 @@ function findLongestSubstring(str) {
         let char = str[i];
 
         if(seen[char]) {
-            start = Math.max(seen[char], start);
+            start = Math.max(start, seen[char]);
         }
 
         longest = Math.max(longest, i - start + 1);
