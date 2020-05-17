@@ -7,24 +7,29 @@
 </head>
 <body>
 <script>
-function areThereDuplicates(...stuff) {
-    if(!stuff.length) return false;
-    const obj = {};
+function maxSubarraySum(array, target) {
+    let total = 0;
+    let start = 0;
+    let end = 0;
+    let minLen = Infinity;
 
-    for(let num of stuff) {
-        obj[num] = obj[num] + 1 || 1;
-    }
-
-    for(let element in obj) {
-        if(obj[element] > 1) {
-            return true;
+    while(start < array.length) {
+        if(total < target && end < array.length) {
+            total += array[end];
+            end++;
+        } else if(total >= target) {
+            minLen = Math.min(minLen, end-start);
+            total -= array[start];
+            start++;
+        } else {
+            break;
         }
     }
 
-    return false;
+    return minLen === Infinity ? 0 : minLen;
 }
 
-areThereDuplicates(1,3,2,4,3,2,3)
+console.log(maxSubarraySum([1,3,2,4,2,5], 6))
 </script>
 </body>
 </html>
