@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+const isOdd = val => val % 2 !== 0;
+
+function someRecursive(array, callback) {
+    if(!array.length) return false;
+
+    if(callback(array[0])) return true;
+
+    return someRecursive(array.slice(1), callback);
+}
+
+console.log(someRecursive([2,4], isOdd))
+</script>
+</body>
+</html>
