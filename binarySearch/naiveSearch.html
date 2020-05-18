@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 <script>
 function naiveSearch(long, short) {
     let counter = 0;
 
-    for(let i = 0; i < long.length; i++) {
-        for(let j = 0; j < short.length; j++) {
-            if(short[j] !== long[i + j]) break;
-            if(j === short.length - 1) counter++;
+    for (let i = 0; i < long.length; i++) {
+        for (let j = 0; j < short.length; j++) {
+            if (short[j] !== long[i + j]) break;
+            if (j === short.length - 1) counter++;
         }
     }
 
@@ -23,4 +25,5 @@ function naiveSearch(long, short) {
 console.log(naiveSearch('lorie lored', 'lo'))
 </script>
 </body>
+
 </html>
