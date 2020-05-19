@@ -7,40 +7,45 @@
 </head>
 <body>
 <script>
-function pivot(arr, start = 0, end = arr.length - 1) {
-    function swap(arr, i, j) {
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+function getDigit(num, i) {
+    return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
+
+function digitCount(num) {
+    if (num === 0) return 1;
+
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function mostDigits(nums) {
+    let maxDigits = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        maxDigits = Math.max(maxDigits, digitCount(nums[i]));
     }
 
-    const pivot = arr[start];
-    let swapIndex = start;
+    return maxDigits;
+}
 
-    for(let i = start + 1; i <= end; i++) {
-        if(arr[i] < pivot) {
-            swapIndex++;
+function radixSort(nums){
+    const maxDigitCount = mostDigits(nums);
 
-            swap(arr, swapIndex, i);
+    for(let k = 0; k < maxDigitCount; k++){
+        const digitBuckets = Array.from({length: 10}, () => []);
+
+        for(let i = 0; i < nums.length; i++){
+            const digit = getDigit(nums[i],k);
+
+            digitBuckets[digit].push(nums[i]);
         }
+
+        nums = [].concat(...digitBuckets);
     }
-
-    swap(arr, swapIndex, start);
-
-
-    return swapIndex;
+    
+    return nums;
 }
 
-function quickSort(arr, left = 0, right = arr.length - 1) {
-    if(left < right) {
-        const pivotIndex = pivot(arr, left, right);
-
-        quickSort(arr, pivotIndex + 1, right);
-        quickSort(arr, left, pivotIndex - 1);
-    }
-
-    return arr;
-}
-
-console.log(quickSort([9, 4, 5, 2, 1, 6, -1, 7, 6, 3]))
+console.log(radixSort([23, 345, 5467, 23, 13, 3, 22, 3]))
 </script>
 </body>
 </html>
