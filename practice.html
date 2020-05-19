@@ -7,6 +7,37 @@
 </head>
 <body>
 <script>
+const obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+function collectString(obj) {
+    let result = [];
+
+    for(let element in obj) {
+        if(typeof obj[element] === 'string') {
+            result.push(obj[element])
+        } else if(typeof obj[element] === 'object') {
+            result = result.concat(collectString(obj[element]));
+        }
+    }
+
+    return result;
+}
+
+console.log(collectString(obj))
 
 </script>
 </body>
