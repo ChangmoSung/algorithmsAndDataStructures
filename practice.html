@@ -7,38 +7,44 @@
 </head>
 <body>
 <script>
-const obj = {
-    stuff: "foo",
-    data: {
-        val: {
-            thing: {
-                info: "bar",
-                moreInfo: {
-                    evenMoreInfo: {
-                        weMadeIt: "baz"
-                    }
-                }
-            }
-        }
-    }
-}
+function merge(arr1, arr2) {
+    const results = [];
+    let i = 0;
+    let j = 0;
 
-function collectString(obj) {
-    let result = [];
-
-    for(let element in obj) {
-        if(typeof obj[element] === 'string') {
-            result.push(obj[element])
-        } else if(typeof obj[element] === 'object') {
-            result = result.concat(collectString(obj[element]));
+    while(i < arr1.length && j < arr2.length) {
+        if(arr1[i] < arr2[j]) {
+            results.push(arr1[i]);
+            i++;
+        } else {
+            results.push(arr2[j]);
+            j++;
         }
     }
 
-    return result;
+    while(i < arr1.length) {
+        results.push(arr1[i]);
+        i++;
+    }
+
+    while(j < arr2.length) {
+        results.push(arr2[j]);
+        j++;
+    }
+
+    return results;
+}
+function mergeSort(arr) {
+    if(arr.length <= 1) return arr;
+
+    const midpoint = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, midpoint));
+    const right = mergeSort(arr.slice(midpoint));
+
+    return merge(left, right);
 }
 
-console.log(collectString(obj))
-
+console.log(mergeSort([1,10,50,-2,-12,3,23,2,432,2,3]))
 </script>
 </body>
 </html>
