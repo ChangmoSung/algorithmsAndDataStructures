@@ -31,21 +31,26 @@ function radixSort(nums){
     const maxDigitCount = mostDigits(nums);
 
     for(let k = 0; k < maxDigitCount; k++){
-        const digitBuckets = Array.from({length: 10}, () => []);
+        const positiveDigitBuckets = Array.from({length: 10}, () => []);
+        const negativeDigitBuckets = Array.from({length: 10}, () => []);
 
         for(let i = 0; i < nums.length; i++){
             const digit = getDigit(nums[i],k);
 
-            digitBuckets[digit].push(nums[i]);
+            if (nums[i] >= 0) {
+                positiveDigitBuckets[digit].push(nums[i]);
+            } else {
+                negativeDigitBuckets[negativeDigitBuckets.length - digit - 1].push(nums[i]);
+            }   
         }
 
-        nums = [].concat(...digitBuckets);
+        nums = [].concat(...negativeDigitBuckets, ...positiveDigitBuckets);
     }
-    
+
     return nums;
 }
 
-console.log(radixSort([23, 345, 5467, 23, 13, 3, 22, 3]))
+console.log(radixSort([23, 345, 5467, 23, -13, 3, -22, 3]))
 </script>
 </body>
 </html>
