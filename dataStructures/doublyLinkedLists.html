@@ -98,16 +98,45 @@ class DoublyLinkedList {
 
         this.length++;
     }
+
+    getAt(index) {
+        if(index < 0 || index >= this.length) return null;
+
+        let counter, current;
+
+        if(index <= this.length / 2) {
+            counter = 0;
+            current = this.head;
+
+            while (counter !== index) {
+                current = current.next;
+                counter++;
+            }
+        } else {
+            counter = this.length - 1;
+            current = this.tail;
+
+            while(counter !== index) {
+                current = current.prev;
+                counter--;
+            }
+
+        }
+
+        return current;
+    }
 }
 
 const list = new DoublyLinkedList();
 list.insertLast(1);
 list.insertLast(2);
 list.insertLast(3);
+list.insertLast(4);
+list.insertLast(5);
 // list.removeLast();
 // list.removeFirst()
-list.insertFirst(100)
-console.log(list);
+// list.insertFirst(100)
+console.log(list.getAt(1));
 </script>
 </body>
 </html>
