@@ -83,6 +83,21 @@ class DoublyLinkedList {
         
         this.length--;
     }
+
+    insertFirst(data) {
+        const newNode = new Node(data);
+
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+
+        this.length++;
+    }
 }
 
 const list = new DoublyLinkedList();
@@ -90,7 +105,8 @@ list.insertLast(1);
 list.insertLast(2);
 list.insertLast(3);
 // list.removeLast();
-list.removeFirst()
+// list.removeFirst()
+list.insertFirst(100)
 console.log(list);
 </script>
 </body>
