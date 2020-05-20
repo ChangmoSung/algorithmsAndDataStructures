@@ -125,18 +125,28 @@ class DoublyLinkedList {
 
         return current;
     }
+
+    update(data, index) {
+        const node = this.getAt(index);
+
+        if(node) {
+            node.data = data;
+        }
+    }
 }
 
 const list = new DoublyLinkedList();
-list.insertLast(1);
-list.insertLast(2);
-list.insertLast(3);
-list.insertLast(4);
-list.insertLast(5);
+// list.insertLast(1);
+// list.insertLast(2);
+// list.insertLast(3);
+// list.insertLast(4);
+// list.insertLast(5);
 // list.removeLast();
-// list.removeFirst()
-// list.insertFirst(100)
-console.log(list.getAt(1));
+// list.removeFirst();
+// list.insertFirst(100);
+list.update(5, 0);
+
+console.log(list);
 </script>
 </body>
 </html>
