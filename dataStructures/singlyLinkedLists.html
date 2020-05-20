@@ -159,9 +159,11 @@ class SinglyLinkedList {
     }
 
     reverse() {
+        if(!this.head || !this.head.next) {
+            return;
+        }
+
         let first = this.head;
-        let last = this.getAt(this.size() - 2);
-        last.next = this.getLast();
         let second = first.next;
 
         while(second) {
@@ -170,7 +172,7 @@ class SinglyLinkedList {
             first = second;
             second = temp;
         }
-        
+
         this.head.next = null;
         this.head = first;
     }
