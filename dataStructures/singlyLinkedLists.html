@@ -112,14 +112,32 @@ class SinglyLinkedList {
 
         return null;
     }
+
+    removeAt(index) {
+        if(!this.head) {
+            return;
+        }
+
+        if(index === 0) {
+            this.head = this.head.next;
+        }
+
+        const previous = this.getAt(index - 1);
+
+        if(!previous || !previous.next) {
+            return;
+        }
+
+        previous.next = previous.next.next;
+    }
 }
 
 const list = new SinglyLinkedList();
 list.insertFirst('hello')
 list.insertFirst('changmo')
 list.insertFirst('job')
-
-console.log(list.getAt(2))
+list.removeAt(1)
+console.log(list)
 </script>
 </body>
 </html>
