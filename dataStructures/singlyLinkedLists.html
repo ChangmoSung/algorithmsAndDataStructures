@@ -157,15 +157,34 @@ class SinglyLinkedList {
             return;
         }
     }
+
+    reverse() {
+        let first = this.head;
+        let last = this.getAt(this.size() - 2);
+        last.next = this.getLast();
+        let second = first.next;
+
+        while(second) {
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+        
+        this.head.next = null;
+        this.head = first;
+    }
 }
 
 const list = new SinglyLinkedList();
-list.insertFirst('hello')
-list.insertFirst('changmo')
-list.insertFirst('job')
-list.insertAt('lol', 1)
-list.update(3, 2)
-
+list.insertLast(1)
+list.insertLast(2)
+list.insertLast(3)
+list.insertLast(4)
+list.insertLast(5)
+// list.insertAt('lol', 1)
+// list.update(3, 2)
+list.reverse()
 console.log(list)
 </script>
 </body>
