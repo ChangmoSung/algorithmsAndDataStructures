@@ -147,6 +147,16 @@ class SinglyLinkedList {
 
         previous.next = node;
     }
+
+    update(data, index) {
+        const node = this.getAt(index);
+
+        if(node) {
+            node.data = data;
+        } else {
+            return;
+        }
+    }
 }
 
 const list = new SinglyLinkedList();
@@ -154,6 +164,8 @@ list.insertFirst('hello')
 list.insertFirst('changmo')
 list.insertFirst('job')
 list.insertAt('lol', 1)
+list.update(3, 2)
+
 console.log(list)
 </script>
 </body>
