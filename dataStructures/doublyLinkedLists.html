@@ -45,12 +45,34 @@ class DoublyLinkedList {
             newNode.prev = this.tail;
             this.tail = newNode;
         }
+
+        this.length++;
+    }
+
+    removeLast() {
+        if(!this.head) {
+            return;
+        }
+
+        let tail = this.tail;
+
+        if(!this.head.next) {
+            this.head = null;
+            this.tail = null;
+            return;
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+        length--;
     }
 }
 
 const list = new DoublyLinkedList();
+list.insertLast(1);
 list.insertLast(2);
-list.insertLast(100);
+list.insertLast(3);
+list.removeLast();
 console.log(list);
 </script>
 </body>
