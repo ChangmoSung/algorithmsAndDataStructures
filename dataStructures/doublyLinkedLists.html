@@ -160,12 +160,12 @@ class DoublyLinkedList {
         if(index === this.length - 1) return this.removeLast();
 
         const removedNode = this.getAt(index);
+        
         removedNode.prev.next = removedNode.next;
         removedNode.next.prev = removedNode.prev;
         removedNode.next = null;
         removedNode.prev = null;
         this.length--;
-
     }
 }
 
