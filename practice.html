@@ -72,6 +72,53 @@ class DoublyLinkedList {
         this.head.prev = null;
         this.length--;
     }
+
+    update(data, index) {
+        const newNode = new Node(data);
+        if (index === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+
+            return;
+        }
+
+        if (index >= this.length || index < 0) {
+            return;
+        } 
+
+        let counter = 0;
+        let current = this.head;
+        while(counter !== this.length) {
+            if(counter === index) {
+                current.data = data;
+            }
+
+            counter++;
+            current = current.next;
+        }
+    }
+
+    removeAt(index) {
+        if(!this.length === 0) return;
+
+        if(!this.length === 1) return this.head;
+
+        let counter = 0;
+        let current = this.head;
+
+        while(counter !== this.length) {
+            if(counter === index) {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                this.length--;
+
+                return;
+            }
+
+            counter++;
+            current = current.next;
+        }
+    }
 }
 
 const list = new DoublyLinkedList();
