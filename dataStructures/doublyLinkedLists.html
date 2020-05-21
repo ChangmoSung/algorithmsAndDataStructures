@@ -60,7 +60,7 @@ class DoublyLinkedList {
             return;
         }
 
-        let lastNode = this.tail;
+        const lastNode = this.tail;
 
         this.tail = lastNode.prev;
         this.tail.next = null;
@@ -70,7 +70,7 @@ class DoublyLinkedList {
     removeFirst() {
         if(this.length === 0) return;
 
-        let oldHead = this.head;
+        const oldHead = this.head;
 
         if(this.length === 1) {
             this.head = null;
