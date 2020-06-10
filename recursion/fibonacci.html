@@ -7,13 +7,27 @@
 </head>
 <body>
 <script>
+console.log('starting up')
+
+setTimeout(() => {
+    console.log('two seconds')
+}, 2000)
+
+setTimeout(() => {
+    console.log('zero seconds')
+}, 0)
+
 function fib(num) {
     if(num <= 2) return 1;
 
     return fib(num - 1) + fib(num - 2);
 }
 
-console.log(fib(4));
+console.log(fib(30));
+
+
+console.log('finishing up')
+
 </script>
 </body>
 </html>
